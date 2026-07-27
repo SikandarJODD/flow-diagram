@@ -132,6 +132,7 @@
 		class={cn(
 			'ml-0 list-none',
 			orientation === 'vertical' ? 'grid auto-rows-min gap-16' : 'flex gap-16',
+			orientation === 'vertical' && (align === 'center' ? 'justify-items-center' : 'justify-items-start'),
 			orientation === 'horizontal' && (align === 'center' ? 'items-center' : 'items-start')
 		)}
 	>

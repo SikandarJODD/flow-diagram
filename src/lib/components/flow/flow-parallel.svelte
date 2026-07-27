@@ -63,13 +63,18 @@
 		orientation: "horizontal" | "vertical";
 	}) {
 		if (orientation === "vertical") {
+			const startX = previous
+				? previous.left - container.left + previous.width / 2
+				: container.width / 2;
+			const endX = next ? next.left - container.left + next.width / 2 : container.width / 2;
+
 			return {
 				start: {
-					x: container.width / 2,
+					x: startX,
 					y: 0,
 				},
 				end: {
-					x: container.width / 2,
+					x: endX,
 					y: container.height,
 				},
 			};
