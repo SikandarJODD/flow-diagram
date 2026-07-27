@@ -37,6 +37,7 @@
 	let links = $state<LinksResult | null>(null);
 
 	let orientation = $derived(diagram.orientation());
+	let diagramAlign = $derived(diagram.align());
 	let firstBranch = $derived(descendants.descendants[0]);
 	let startAnchor = $derived<RectLike | null>(firstBranch?.props.start ?? measurements);
 	let endAnchor = $derived<RectLike | null>(firstBranch?.props.end ?? measurements);
@@ -351,6 +352,7 @@
 			() => parentDescendants.measurementEpoch,
 			() => previousNode,
 			() => nextNode,
+			() => diagramAlign,
 		],
 		() => {
 			untrack(() => computeLinks());
@@ -412,7 +414,11 @@
 		class={cn(
 			"flex list-none gap-5",
 			align === "start" ? "items-start" : "items-end",
-			orientation === "horizontal" ? "ml-0 flex-col" : "mx-auto w-fit gap-5"
+			orientation === "horizontal"
+				? "ml-0 flex-col"
+				: diagramAlign === "center"
+					? "mx-auto w-fit gap-5"
+					: "mr-auto w-fit gap-5"
 		)}
 	>
 		{@render children?.()}

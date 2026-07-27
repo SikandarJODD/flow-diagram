@@ -2,7 +2,7 @@
 	import * as Flow from '$lib/components/flow';
 </script>
 
-<Flow.Root orientation="vertical">
+<Flow.Root orientation="vertical" align='center'>
 	<Flow.Node>Start</Flow.Node>
 	<Flow.Parallel>
 		<Flow.Node>Branch A</Flow.Node>
