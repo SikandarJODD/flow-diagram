@@ -38,6 +38,8 @@
 
 	let orientation = $derived(diagram.orientation());
 	let diagramAlign = $derived(diagram.align());
+	let junctionMarker = $derived(diagram.junctionMarker());
+	let useSquareJunctions = $derived(junctionMarker === "square");
 	let firstBranch = $derived(descendants.descendants[0]);
 	let startAnchor = $derived<RectLike | null>(firstBranch?.props.start ?? measurements);
 	let endAnchor = $derived<RectLike | null>(firstBranch?.props.end ?? measurements);
@@ -224,7 +226,7 @@
 					y2: branchStart.y,
 					isBottom: false,
 					disabled: previousNode?.props.disabled || isDescendantDisabled,
-					single: !hasIncomingJunction,
+					single: useSquareJunctions ? !hasIncomingJunction : true,
 					fromId: previousNode?.id,
 					toId: descendant.id,
 				});
@@ -258,7 +260,7 @@
 					y2: end.y,
 					isBottom: true,
 					disabled: isDescendantDisabled || nextNode?.props.disabled,
-					single: !hasOutgoingJunction,
+					single: useSquareJunctions ? !hasOutgoingJunction : true,
 					fromId: descendant.id,
 					toId: nextNode?.id,
 				});
@@ -271,14 +273,14 @@
 			connectors: branchConnectors,
 			junctions: {
 				start:
-					previousNodeRect && hasIncomingJunction
+					useSquareJunctions && previousNodeRect && hasIncomingJunction
 						? {
 								x: orientation === "vertical" ? start.x : start.x + 32,
 								y: orientation === "vertical" ? start.y + 32 : start.y,
 							}
 						: undefined,
 				end:
-					nextNodeRect && hasOutgoingJunction
+					useSquareJunctions && nextNodeRect && hasOutgoingJunction
 						? {
 								x: orientation === "vertical" ? end.x : end.x - 32,
 								y: orientation === "vertical" ? end.y - 32 : end.y,
@@ -394,13 +396,13 @@
 	<div class="pointer-events-none absolute inset-0 z-1">
 		{#if links}
 			<Connectors connectors={links.connectors} {orientation}>
-				{#if links.junctions.start}
+				{#if junctionMarker === "square" && links.junctions.start}
 					<g transform={`translate(${links.junctions.start.x} ${links.junctions.start.y})`}>
 						<rect x="-3" y="-3" width="6" height="6" fill="currentColor" rx="1" />
 					</g>
 				{/if}
 
-				{#if links.junctions.end}
+				{#if junctionMarker === "square" && links.junctions.end}
 					<g transform={`translate(${links.junctions.end.x} ${links.junctions.end.y})`}>
 						<rect x="-3" y="-3" width="6" height="6" fill="currentColor" rx="1" />
 					</g>

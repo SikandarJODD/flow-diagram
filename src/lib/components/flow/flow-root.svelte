@@ -4,7 +4,7 @@
 	import { cn } from "$lib/utils.js";
 	import FlowNodeList from "./flow-node-list.svelte";
 	import { setDiagramContext } from "./diagram-context.svelte";
-	import type { Align, Orientation } from "./types";
+	import type { Align, JunctionMarker, Orientation } from "./types";
 	import "$lib/styles/kumo.css";
 	import "$lib/styles/kumo-standalone.css";
 
@@ -16,6 +16,7 @@
 	interface FlowRootProps {
 		orientation?: Orientation;
 		align?: Align;
+		junctionMarker?: JunctionMarker;
 		canvas?: boolean;
 		padding?: { x?: number; y?: number };
 		onOverflowChange?: (overflow: { x: boolean; y: boolean }) => void;
@@ -40,6 +41,7 @@
 	let {
 		orientation = "horizontal",
 		align = "start",
+		junctionMarker = "square",
 		canvas = true,
 		padding,
 		onOverflowChange,
@@ -81,6 +83,7 @@
 	setDiagramContext({
 		orientation: () => orientation,
 		align: () => align,
+		junctionMarker: () => junctionMarker,
 		x,
 		y,
 		wrapper: () => wrapperRef,

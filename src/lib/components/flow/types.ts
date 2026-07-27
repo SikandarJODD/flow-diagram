@@ -4,6 +4,8 @@ export type Align = "start" | "center";
 
 export type ParallelAlign = "start" | "end";
 
+export type JunctionMarker = "none" | "square";
+
 export type RectLike = {
 	x: number;
 	y: number;

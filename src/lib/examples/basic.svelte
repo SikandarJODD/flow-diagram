@@ -2,7 +2,7 @@
 	import * as Flow from '$lib/components/flow';
 </script>
 
-<Flow.Root>
+<Flow.Root junctionMarker='none'>
 	<Flow.Node>Start</Flow.Node>
 	<Flow.Parallel>
 		<Flow.List>

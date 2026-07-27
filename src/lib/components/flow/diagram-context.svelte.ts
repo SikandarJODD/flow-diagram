@@ -1,10 +1,11 @@
 import type { MotionValue } from "motion-sv";
 import { getContext, setContext } from "svelte";
-import type { Align, Orientation } from "./types";
+import type { Align, JunctionMarker, Orientation } from "./types";
 
 export type DiagramContextValue = {
 	orientation: () => Orientation;
 	align: () => Align;
+	junctionMarker: () => JunctionMarker;
 	x: MotionValue<number>;
 	y: MotionValue<number>;
 	wrapper: () => HTMLDivElement | null;

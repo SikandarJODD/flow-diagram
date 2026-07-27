@@ -18,4 +18,4 @@ export {
 	Anchor as FlowAnchor,
 };
 
-export type { Align, Connector, NodeData, Orientation, ParallelAlign, RectLike } from "./types";
+export type { Align, Connector, JunctionMarker, NodeData, Orientation, ParallelAlign, RectLike } from "./types";
