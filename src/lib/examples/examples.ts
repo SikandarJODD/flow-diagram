@@ -3,6 +3,7 @@ import Basic from "./basic.svelte";
 import { Simple } from ".";
 import Vertical from "./vertical.svelte";
 import VerticalParallel from "./vertical-parallel.svelte";
+import CustomNodeStyling from "./custom-node-styling.svelte";
 
 type Example = {
     name: string;
@@ -25,5 +26,9 @@ export const examples: Example[] = [
     {
         name: "Vertical with Parallel Nodes",
         component: VerticalParallel,
+    },
+    {
+        name: " Custom Node Styling",
+        component: CustomNodeStyling,
     }
 ]
